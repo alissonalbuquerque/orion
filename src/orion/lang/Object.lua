@@ -14,6 +14,11 @@ local Object = {
 
     end,
 
+    -- @return string
+    class_name = function(self)
+        return ("%s.%s"):format(self.__namespace, self.__class)
+    end,
+
     -- @override
     -- @return string
     __tostring = function(self)

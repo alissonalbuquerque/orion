@@ -8,26 +8,18 @@ local ValueError = {
 
     __namespace = __config__.__namespace,
 
-    -- @param 
+    -- @param any value
+    -- @param string message
     __construct = function(self, value, message)
-        self.name    = self.__class
-        self.level   = 0
-        self.message = ("%s: invalid value '%s'%s"):format(
-            self.name,
+        self.message = ("invalid value '%s'%s"):format(
             value,
             message ~= nil and (": %s"):format(message) or ""
         )
     end,
 
-    -- @override
-    -- @return string
-    get_message = function(self)
-        return self.message
-    end,
-
-    -- @throws error If received type is not compatible with expected type.
+    -- @throws error by built-in Lua error function.
     throw = function(self)
-        error(self:get_message(), self:get_level())
+        error(("%s: %s"):format(self:class_name(), self:get_message()))
     end
 }
 

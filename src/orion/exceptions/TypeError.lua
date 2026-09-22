@@ -8,22 +8,15 @@ local TypeError = {
 
     __namespace = __config__.__namespace,
 
-    -- @param 
+    -- @param string expected
+    -- @param string received
     __construct = function(self, expected, received)
-        self.name    = self.__class
-        self.level   = 0
-        self.message = ("%s: incompatible types: expected '%s', but received '%s'"):format(self.name, expected, received)
+        self.message = ("incompatible types: expected '%s', but received '%s'"):format(expected, received)
     end,
 
-    -- @override
-    -- @return string
-    get_message = function(self)
-        return self.message
-    end,
-
-    -- @throws error If received type is not compatible with expected type.
+    -- @throws error by built-in Lua error function.
     throw = function(self)
-        error(self:get_message(), self:get_level())
+        error(("%s: %s"):format(self:class_name(), self:get_message()))
     end
 }
 
