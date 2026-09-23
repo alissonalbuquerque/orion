@@ -1,9 +1,9 @@
 -- @table Package
 local Package = {
 
-    -- @field _namespace string
-    -- @field _modules   string[]
-    -- @return Object|metatable|Package
+    -- @param _namespace string
+    -- @param _modules string[]
+    -- @return Package
     new = function(_namespace, _modules)
 
         local _table = {namespace = _namespace, modules = _modules}
@@ -48,19 +48,19 @@ local Package = {
         return setmetatable(_table, _metatable)
     end,
 
-    -- @field _modules module[]
-    -- @field _imports string[]
-    -- @return args|... -> module[]
-    from = function(_modules, _imports)
+    -- @param module[] _modules
+    -- @param string[] ...
+    -- @return args
+    import = function(_modules, ...)
         local modules = {}
+        local imports = {...}
 
-        for _, _value in pairs(_imports) do
-            table.insert(modules, _modules[_value])
+        for _, _import in pairs(imports) do
+            table.insert(modules, _modules[_import])
         end
 
         return table.unpack(modules)
     end
-
 }
 
 return Package
