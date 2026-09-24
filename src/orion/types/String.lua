@@ -1,4 +1,5 @@
 local __config__ = require('orion.types.config')
+local Object     = require('orion.lang.Object')
 local Types      = require('orion.lang.Types')
 local TypeError  = require('orion.exceptions.TypeError')
 

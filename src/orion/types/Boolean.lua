@@ -1,9 +1,10 @@
 local __config__ = require('orion.types.config')
+local Object     = require('orion.lang.Object')
 local Types      = require('orion.lang.Types')
-local Values     = require('orion.lang.Values')
 local Unit       = require('orion.singleton.Unit')
 local TypeError  = require('orion.exceptions.TypeError')
 local ValueError = require('orion.exceptions.ValueError')
+
 
 -- @class
 local Boolean = {
@@ -19,23 +20,29 @@ local Boolean = {
         self:__validate(value)
 
         local received  = Types:type(value)
-        local bool_dict = {['true'] = true, ['false'] = false}
+        local bool_dict = {
+            ['true'] = true,
+            ['false'] = false
+        }
 
-        if Types:equals(Types.BOOLEAN, received) then self.value = value end
-        if Types:equals(Types.STRING, received) then self.value = bool_dict[value] end
+        if Types.BOOLEAN == received then 
+            self.value = value
+        elseif Types.STRING == received then
+            self.value = bool_dict[value]
+        end
     end,
 
     -- @param string|boolean value
     -- @return Unit
     __validate = function(self, value)
-        local received  = Types:type(value)
-        local expected  = {str = Types.STRING, bool = Types.BOOLEAN}
+        local received = Types:type(value)
+        local expected = {str = Types.STRING, bool = Types.BOOLEAN}
 
-        if Types:not_equals(expected.str, received) and Types:not_equals(expected.bool, received) then
+        if received ~= expected.str and received ~= expected.bool then 
             TypeError.new(("%s or %s"):format(expected.str, expected.bool), received):throw()
         end
 
-        if Types:equals(expected.str, received) and Values:not_equals(value, 'true') and Values:not_equals(value, 'false') then
+        if received == expected.str and value ~= 'true' and value ~= 'false' then
             ValueError.new(value, "Expected 'string' or 'boolean', 'true' or 'false' in value"):throw()
         end
 
@@ -45,7 +52,7 @@ local Boolean = {
     -- @param Object other
     -- @return boolean
     equals = function(self, other)
-        return Types:equals(Types:class(self), Types:class(other)) and (self.value == other.value)
+        return Types:class(self) == Types:class(other) and self.value == other.value
     end,
 
     -- @return integer
@@ -80,4 +87,4 @@ local Boolean = {
     end
 }
 
-return __config__.__class:create(Boolean, __config__.__object.template)
+return __config__.__class:create(Boolean, Object.template)

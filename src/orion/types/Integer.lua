@@ -1,4 +1,5 @@
 local __config__ = require('orion.types.config')
+local Object     = require('orion.lang.Object')
 local Types      = require('orion.lang.Types')
 local Values     = require('orion.lang.Values')
 local Unit       = require('orion.singleton.Unit')
@@ -30,11 +31,11 @@ local Integer = {
         local casttype = Types:type(Values:to_number(value))
         local expected = {str = Types.STRING, num = Types.NUMBER}
 
-        if Types:not_equals(expected.str, received) and Types:not_equals(expected.num, received) then
+        if received ~= expected.str and received ~= expected.num then
             TypeError.new(("%s or %s"):format(expected.str, expected.num), received):throw()
         end
 
-        if Types:not_equals(expected.num, casttype) then
+        if casttype ~= expected.num then
             ValueError.new(value, "Expected 'string' or 'number' assing to 'number'"):throw()
         end
         
@@ -44,7 +45,7 @@ local Integer = {
     -- @param Object other
     -- @return boolean
     equals = function(self, other)
-        return Types:equals(Types:class(self), Types:class(other)) and (self.value == other.value)
+        return Types:class(self) == Types:class(other) and self.value == other.value
     end,
 
     -- @return integer
@@ -74,4 +75,4 @@ local Integer = {
     end
 }
 
-return __config__.__class:create(Integer, __config__.__object.template)
+return __config__.__class:create(Integer, Object.template)

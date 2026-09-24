@@ -1,4 +1,5 @@
 local __config__ = require('orion.types.config')
+local Object     = require('orion.lang.Object')
 local Boolean    = require('orion.types.Boolean')
 local Float      = require('orion.types.Float')
 local Integer    = require('orion.types.Integer')
@@ -45,4 +46,4 @@ local Conversion = {
     -- end
 }
 
-return __config__.__class:create(Conversion, __config__.__object.template)
+return __config__.__class:create(Conversion, Object.template)
