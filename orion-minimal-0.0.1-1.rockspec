@@ -1,10 +1,10 @@
-package = "orion"
+package = "orion-minimal"
 
 version = "0.0.1-1"
 
 source = {
   url = "git+https://github.com/alissonalbuquerque/orion.git",
-  branch = "main"
+  branch = "minimal"
 }
 
 description = {
