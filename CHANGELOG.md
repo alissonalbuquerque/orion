@@ -1,5 +1,5 @@
 # Changelog
 
-## [0.0.1] - 2026-08-22
+## [0.0.1] - 2026-10-18
 
-- Initial release.
+- Initial release minimal.

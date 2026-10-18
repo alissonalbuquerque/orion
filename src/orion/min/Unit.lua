@@ -1,6 +1,6 @@
-local __config__ = require('orion.lang.config')
+local __config__ = require('orion.min.config')
 
-local Object = require('orion.lang.Object')
+local Object = require('orion.min.Object')
 
 -- @class
 local Unit = {

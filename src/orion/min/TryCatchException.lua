@@ -1,5 +1,5 @@
-local __config__ = require('orion.exceptions.config')
-local Exception  = require('orion.lang.Exception')
+local __config__ = require('orion.min.config')
+local Exception  = require('orion.min.Exception')
 
 -- @class
 local TryCatchException = {

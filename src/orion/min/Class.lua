@@ -27,7 +27,7 @@ local Class = setmetatable(
             EXCLUDE_ONLY = 'exclude_only'
         },
 
-        ABSTRACT_CLASS = 'orion.lang.AbstractClass'
+        ABSTRACT_CLASS = 'orion.min.AbstractClass'
     },
     {
         __index = {

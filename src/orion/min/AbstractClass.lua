@@ -1,4 +1,4 @@
-local __config__ = require('orion.lang.config')
+local __config__ = require('orion.min.config')
 
 -- @interface
 local AbstractClass = {

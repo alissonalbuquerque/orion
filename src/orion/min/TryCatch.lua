@@ -1,13 +1,11 @@
-local __config__ = require('orion.lang.config')
+local __config__ = require('orion.min.config')
 
-local Unit = require('orion.singleton.Unit')
-local Types = require('orion.lang.Types')
-local Object = require('orion.lang.Object')
-local Exception = require('orion.lang.Exception')
-local RuntimeException = require('orion.lang.RuntimeException')
-local TryCatchException = require('orion.exceptions.TryCatchException')
-
-
+local Unit              = require('orion.min.Unit').new()
+local Types             = require('orion.min.Types')
+local Object            = require('orion.min.Object')
+local Exception         = require('orion.min.Exception')
+local RuntimeException  = require('orion.min.RuntimeException')
+local TryCatchException = require('orion.min.TryCatchException')
 
 -- @class
 local TryCatch = {
