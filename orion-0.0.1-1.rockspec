@@ -21,6 +21,8 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
+    ["orion.version"]                      = "src/orion/version.lua,
+
     ["orion.core"]                         = "src/orion/core/init.lua",
     ["orion.core.config"]                  = "src/orion/core/config.lua",
     ["orion.core.Class"]                   = "src/orion/core/Class.lua",
